@@ -88,10 +88,7 @@ const App = () => {
   return (
     <ExcelExport ref={_export}>
       <Grid
-        data={{
-          ...process(filteredData, dataState),
-          data: process(filteredData, dataState).data,
-        }}
+        data={process(filteredData, dataState)}
         pageable={true}
         skip={dataState.skip}
         take={dataState.take}
