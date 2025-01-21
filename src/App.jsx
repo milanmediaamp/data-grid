@@ -23,17 +23,12 @@ const App = () => {
   const [data, setData] = useState(projects);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [selectedProjectName, setSelectedProjectName] = useState(null);
   const [selectedTeamMember, setSelectedTeamMember] = useState(null);
 
-  const [projectNames, setProjectNames] = useState([]);
   const [teamMembers, setTeamMembers] = useState([]);
 
   useEffect(() => {
-    const uniqueProjectNames = [...new Set(projects.map((p) => p.ProjectName))];
     const uniqueTeamMembers = [...new Set(projects.map((p) => p.TeamMember))];
-
-    setProjectNames(uniqueProjectNames);
     setTeamMembers(uniqueTeamMembers);
   }, [data]);
 
@@ -53,12 +48,6 @@ const App = () => {
         (project) =>
           new Date(project.CreatedDate) >= startDate &&
           new Date(project.CreatedDate) <= endDate
-      );
-    }
-
-    if (selectedProjectName) {
-      filteredProjects = filteredProjects.filter(
-        (project) => project.ProjectName === selectedProjectName
       );
     }
 
@@ -94,9 +83,6 @@ const App = () => {
         take={dataState.take}
         total={filteredData.length}
         filterable={true}
-        filter={dataState.filter}
-        sortable={true}
-        sort={dataState.sort}
         onDataStateChange={handleDataStateChange}
       >
         <GridToolbar>
@@ -119,18 +105,11 @@ const App = () => {
             label="End Date"
           />
           <DropDownList
-            data={projectNames}
-            value={selectedProjectName}
-            onChange={(e) => setSelectedProjectName(e.value)}
-            placeholder="Select Project"
-            label="Project Name"
-          />
-          <DropDownList
             data={teamMembers}
             value={selectedTeamMember}
             onChange={(e) => setSelectedTeamMember(e.value)}
-            placeholder="Select Team Member"
-            label="Team Member"
+            placeholder="Select Member"
+            label="Assinged To"
           />
         </GridToolbar>
         <Column field="ProjectID" title="ID" />
