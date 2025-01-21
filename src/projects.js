@@ -1,0 +1,58 @@
+export const projects = [
+  {
+    ProjectID: 1,
+    ProjectName: "Project Alpha",
+    TeamMember: "John Doe",
+    CreatedDate: "2024-01-15T09:00:00",
+    EndDate: "2024-03-15T17:00:00",
+  },
+  {
+    ProjectID: 2,
+    ProjectName: "Project Beta",
+    TeamMember: "Jane Smith",
+    CreatedDate: "2024-02-01T10:30:00",
+    EndDate: "2024-04-01T18:00:00",
+  },
+  {
+    ProjectID: 3,
+    ProjectName: "Project Gamma",
+    TeamMember: "John Doe",
+    CreatedDate: "2024-03-10T11:00:00",
+    EndDate: "2024-05-10T19:00:00",
+  },
+  {
+    ProjectID: 4,
+    ProjectName: "Project Delta",
+    TeamMember: "Emily Johnson",
+    CreatedDate: "2024-04-05T12:15:00",
+    EndDate: "2024-06-05T20:00:00",
+  },
+  {
+    ProjectID: 5,
+    ProjectName: "Project Epsilon",
+    TeamMember: "Jane Smith",
+    CreatedDate: "2024-05-01T13:30:00",
+    EndDate: "2024-07-01T21:00:00",
+  },
+  {
+    ProjectID: 6,
+    ProjectName: "Project Zeta",
+    TeamMember: "John Doe",
+    CreatedDate: "2024-06-20T14:00:00",
+    EndDate: "2024-08-20T22:00:00",
+  },
+  {
+    ProjectID: 7,
+    ProjectName: "Project Eta",
+    TeamMember: "Michael Brown",
+    CreatedDate: "2024-07-10T15:00:00",
+    EndDate: "2024-09-10T23:00:00",
+  },
+  {
+    ProjectID: 8,
+    ProjectName: "Project Theta",
+    TeamMember: "Emily Johnson",
+    CreatedDate: "2024-08-15T16:00:00",
+    EndDate: "2024-10-15T23:45:00",
+  },
+];
