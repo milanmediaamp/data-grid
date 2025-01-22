@@ -47,7 +47,7 @@ const App = () => {
       filteredProjects = filteredProjects.filter(
         (project) =>
           new Date(project.CreatedDate) >= startDate &&
-          new Date(project.endDate) <= endDate
+          new Date(project.EndDate) <= endDate
       );
     }
 
