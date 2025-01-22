@@ -20,16 +20,16 @@ const App = () => {
   };
 
   const [dataState, setDataState] = useState(initialDataState);
-  const [data, setData] = useState(projects);
+  const [data, setData] = useState(projects); //eslint-disable-line
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [selectedTeamMember, setSelectedTeamMember] = useState(null);
+  const [selectedOwner, setSelectedOwner] = useState(null);
 
-  const [teamMembers, setTeamMembers] = useState([]);
+  const [Owners, setOwners] = useState([]);
 
   useEffect(() => {
-    const uniqueTeamMembers = [...new Set(projects.map((p) => p.TeamMember))];
-    setTeamMembers(uniqueTeamMembers);
+    const uniqueOwners = [...new Set(projects.map((p) => p.Owner))];
+    setOwners(uniqueOwners);
   }, [data]);
 
   const handleStartDateChange = (e) => {
@@ -51,9 +51,9 @@ const App = () => {
       );
     }
 
-    if (selectedTeamMember) {
+    if (selectedOwner) {
       filteredProjects = filteredProjects.filter(
-        (project) => project.TeamMember === selectedTeamMember
+        (project) => project.Owner === selectedOwner
       );
     }
 
@@ -94,33 +94,46 @@ const App = () => {
           >
             Export to Excel
           </Button>
-          <DatePicker
-            value={startDate}
-            onChange={handleStartDateChange}
-            label="Start Date"
-          />
-          <DatePicker
-            value={endDate}
-            onChange={handleEndDateChange}
-            label="End Date"
-          />
-          <DropDownList
-            data={teamMembers}
-            value={selectedTeamMember}
-            onChange={(e) => setSelectedTeamMember(e.value)}
-            placeholder="Select Member"
-            label="Assinged To"
-          />
         </GridToolbar>
         <Column field="ProjectID" title="ID" />
         <Column field="ProjectName" title="Project Name" />
-        <Column field="TeamMember" title="Owner" />
+        <Column
+          field="Owner"
+          headerCell={() => (
+            <DropDownList
+              label="Owner"
+              defaultItem="Select a owner"
+              data={Owners}
+              value={selectedOwner}
+              onChange={(e) => setSelectedOwner(e.value)}
+              style={{ width: "150px", marginTop: "5px" }}
+            />
+          )}
+        />
         <Column
           field="CreatedDate"
           title="Created Date"
-          format="{0:yyyy-MM-dd}"
+          format="{0:MM-dd-yyyy}"
+          headerCell={() => (
+            <DatePicker
+              value={startDate}
+              onChange={handleStartDateChange}
+              label="Start Date"
+            />
+          )}
         />
-        <Column field="EndDate" title="End Date" format="{0:yyyy-MM-dd}" />
+        <Column
+          field="EndDate"
+          title="End Date"
+          format="{0:MM-dd-yyyy}"
+          headerCell={() => (
+            <DatePicker
+              value={endDate}
+              onChange={handleEndDateChange}
+              label="End Date"
+            />
+          )}
+        />
       </Grid>
     </ExcelExport>
   );
