@@ -3,7 +3,7 @@ import { Input } from '@progress/kendo-react-inputs'
 import { useState } from 'react'
 
 const Xlsave = ({exportExport}) => {//eslint-disable-line
-  const [exportName, setExportName] = useState(null)
+  const [exportName, setExportName] = useState('')
   return (
     <div>
       <Input

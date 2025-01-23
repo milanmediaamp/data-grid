@@ -15,8 +15,6 @@ const App = () => {
   const initialDataState = {
     take: 10,
     skip: 0,
-    filter: undefined,
-    sort: undefined,
   };
 
   const [dataState, setDataState] = useState(initialDataState);
