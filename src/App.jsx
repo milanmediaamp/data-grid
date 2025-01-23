@@ -7,9 +7,9 @@ import {
 import { process } from "@progress/kendo-data-query";
 import { projects } from "./projects";
 import { ExcelExport } from "@progress/kendo-react-excel-export";
-import { Button } from "@progress/kendo-react-buttons";
 import { DatePicker } from "@progress/kendo-react-dateinputs";
 import { DropDownList } from "@progress/kendo-react-dropdowns";
+import Xlsave from "./components/Xlsave";
 
 const App = () => {
   const initialDataState = {
@@ -24,6 +24,7 @@ const App = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [selectedOwner, setSelectedOwner] = useState(null);
+  const [exportName, setExportName] = useState(null);
 
   const [Owners, setOwners] = useState([]);
 
@@ -66,7 +67,12 @@ const App = () => {
 
   const _export = React.useRef(null);
 
-  const exportExport = () => {
+  const exportExport = (name) => {
+    if (!name) {
+      alert("Please enter a file name");
+      return;
+    }
+    setExportName(name);
     if (_export.current !== null) {
       _export.current.save(filterData());
     }
@@ -75,25 +81,18 @@ const App = () => {
   const filteredData = filterData();
 
   return (
-    <ExcelExport ref={_export}>
+    <ExcelExport ref={_export} fileName={exportName}>
       <Grid
         data={process(filteredData, dataState)}
         pageable={true}
         skip={dataState.skip}
         take={dataState.take}
         total={filteredData.length}
-        filterable={true}
+        // filterable={true}
         onDataStateChange={handleDataStateChange}
       >
         <GridToolbar>
-          <Button
-            title="Export Excel"
-            themeColor={"primary"}
-            type="button"
-            onClick={exportExport}
-          >
-            Export to Excel
-          </Button>
+          <Xlsave exportExport={exportExport}/>
         </GridToolbar>
         <Column field="ProjectID" title="ID" />
         <Column field="ProjectName" title="Project Name" />

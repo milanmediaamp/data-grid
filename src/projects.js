@@ -55,4 +55,11 @@ export const projects = [
     CreatedDate: "08-15-2024",
     EndDate: "10-15-2024",
   },
+  {
+    ProjectID: 9,
+    ProjectName: "Project test",
+    Owner: "Harshil",
+    CreatedDate: "08-15-2024",
+    EndDate: "10-15-2024",
+  },
 ];
