@@ -41,7 +41,7 @@ const App = () => {
       filteredProjects = filteredProjects.filter(
         (project) =>
           new Date(project.CreatedDate) >= dateRange.start &&
-          new Date(project.CreatedDate) <= dateRange.end
+          new Date(project.EndDate) <= dateRange.end
       );
     }
 
@@ -108,10 +108,14 @@ const App = () => {
         />
         <Column
           field="CreatedDate"
-          title="Created Date"
-          format="{0:MM-dd-yyyy}"
+          title="Created Date (MM-dd-yyyy)"
+          format="{0:mm-dd-yyyy}"
         />
-        <Column field="EndDate" title="End Date" format="{0:MM-dd-yyyy}" />
+        <Column
+          field="EndDate"
+          title="End Date (MM-dd-yyyy)"
+          format="{0:mm-dd-yyyy}"
+        />
       </Grid>
     </ExcelExport>
   );

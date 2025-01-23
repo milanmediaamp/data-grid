@@ -12,8 +12,8 @@ const dateRangeOptions = [
   { label: "Last Quarter", days: 90 },
   { label: "Last 180 Days", days: 180 },
   { label: "Last Year", days: 365 },
-  { label: "Year to Date", days: "ytd" },
-  { label: "All Time", days: "all" },
+  // { label: "Year to Date", days: "ytd" },
+  // { label: "All Time", days: "all" },
 ];
 
 const DateSelector = ({onDateRangeChange}) => {//eslint-disable-line
@@ -38,12 +38,15 @@ const DateSelector = ({onDateRangeChange}) => {//eslint-disable-line
     <div className="k-card k-rounded-md" style={{ width: "300px" }}>
       <div style={{ padding: "20px" }}>
         <h2 className="k-card-title">Date Range</h2>
+        {value.start && ("Showing Data from:-")}
         <Button
           onClick={() => setIsExpanded(!isExpanded)}
           look="outline"
           style={{ width: "100%", marginTop: "12px" }}
         >
-          {String(value.start)}
+          {value.start
+            ? String(value.start.toLocaleDateString())
+            : "Select Date Range"}
           {/* {value.start.toLocaleDateString()} - {value.end.toLocaleDateString()} */}
         </Button>
         {isExpanded && (
