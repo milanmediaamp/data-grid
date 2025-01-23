@@ -7,9 +7,9 @@ import {
 import { process } from "@progress/kendo-data-query";
 import { projects } from "./projects";
 import { ExcelExport } from "@progress/kendo-react-excel-export";
-import { DatePicker } from "@progress/kendo-react-dateinputs";
 import { DropDownList } from "@progress/kendo-react-dropdowns";
 import Xlsave from "./components/Xlsave";
+import DateSelector from "./components/DateSelector";
 
 const App = () => {
   const initialDataState = {
@@ -21,11 +21,12 @@ const App = () => {
 
   const [dataState, setDataState] = useState(initialDataState);
   const [data, setData] = useState(projects); //eslint-disable-line
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
   const [selectedOwner, setSelectedOwner] = useState(null);
   const [exportName, setExportName] = useState(null);
-
+    const [dateRange, setDateRange] = useState({
+      start: null,
+      end: null,
+    });
   const [Owners, setOwners] = useState([]);
 
   useEffect(() => {
@@ -33,22 +34,14 @@ const App = () => {
     setOwners(uniqueOwners);
   }, [data]);
 
-  const handleStartDateChange = (e) => {
-    setStartDate(e.value);
-  };
-
-  const handleEndDateChange = (e) => {
-    setEndDate(e.value);
-  };
-
   const filterData = () => {
     let filteredProjects = [...projects];
 
-    if (startDate && endDate) {
+    if (dateRange.start && dateRange.end) {
       filteredProjects = filteredProjects.filter(
         (project) =>
-          new Date(project.CreatedDate) >= startDate &&
-          new Date(project.EndDate) <= endDate
+          new Date(project.CreatedDate) >= dateRange.start &&
+          new Date(project.CreatedDate) <= dateRange.end
       );
     }
 
@@ -65,6 +58,9 @@ const App = () => {
     setDataState(event.dataState);
   };
 
+    const handleDateRangeChange = (range) => {
+      setDateRange(range);
+    };
   const _export = React.useRef(null);
 
   const exportExport = (name) => {
@@ -92,7 +88,8 @@ const App = () => {
         onDataStateChange={handleDataStateChange}
       >
         <GridToolbar>
-          <Xlsave exportExport={exportExport}/>
+          <Xlsave exportExport={exportExport} />
+          <DateSelector onDateRangeChange={handleDateRangeChange} />
         </GridToolbar>
         <Column field="ProjectID" title="ID" />
         <Column field="ProjectName" title="Project Name" />
@@ -113,26 +110,8 @@ const App = () => {
           field="CreatedDate"
           title="Created Date"
           format="{0:MM-dd-yyyy}"
-          headerCell={() => (
-            <DatePicker
-              value={startDate}
-              onChange={handleStartDateChange}
-              label="Start Date"
-            />
-          )}
         />
-        <Column
-          field="EndDate"
-          title="End Date"
-          format="{0:MM-dd-yyyy}"
-          headerCell={() => (
-            <DatePicker
-              value={endDate}
-              onChange={handleEndDateChange}
-              label="End Date"
-            />
-          )}
-        />
+        <Column field="EndDate" title="End Date" format="{0:MM-dd-yyyy}" />
       </Grid>
     </ExcelExport>
   );

@@ -31,8 +31,8 @@ export const projects = [
     ProjectID: 5,
     ProjectName: "Project Epsilon",
     Owner: "Jane Smith",
-    CreatedDate: "05-01-2024",
-    EndDate: "07-01-2024",
+    CreatedDate: "05-01-2025",
+    EndDate: "07-01-2025",
   },
   {
     ProjectID: 6,
@@ -61,5 +61,19 @@ export const projects = [
     Owner: "Harshil",
     CreatedDate: "08-15-2024",
     EndDate: "10-15-2024",
+  },
+  {
+    ProjectID: 10,
+    ProjectName: "Project test2",
+    Owner: "Milan",
+    CreatedDate: "01-15-2025",
+    EndDate: "10-15-2025",
+  },
+  {
+    ProjectID: 9,
+    ProjectName: "Project test3",
+    Owner: "Kevin",
+    CreatedDate: "08-15-2025",
+    EndDate: "8-15-2025",
   },
 ];
