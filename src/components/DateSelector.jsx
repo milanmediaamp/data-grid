@@ -47,7 +47,6 @@ const DateSelector = ({onDateRangeChange}) => {//eslint-disable-line
           {value.start
             ? String(value.start.toLocaleDateString())
             : "Select Date Range"}
-          {/* {value.start.toLocaleDateString()} - {value.end.toLocaleDateString()} */}
         </Button>
         {isExpanded && (
           <Dialog

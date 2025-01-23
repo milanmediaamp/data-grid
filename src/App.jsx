@@ -66,7 +66,7 @@ const App = () => {
       alert("Please enter a file name");
       return;
     }
-    setExportName(name);
+    setExportName(String(name)+".xlsx");
     if (_export.current !== null) {
       _export.current.save(filterData());
     }
