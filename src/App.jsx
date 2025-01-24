@@ -106,13 +106,13 @@ const App = () => {
         />
         <Column
           field="CreatedDate"
-          title="Created Date (MM-dd-yyyy)"
-          format="{0:mm-dd-yyyy}"
+          title="Created Date (dd-mm-yyyy)"
+          format="{0:dd-mm-yyyy}"
         />
         <Column
           field="EndDate"
-          title="End Date (MM-dd-yyyy)"
-          format="{0:mm-dd-yyyy}"
+          title="End Date (dd-mm-yyyy)"
+          format="{0:dd-mm-yyyy}"
         />
       </Grid>
     </ExcelExport>

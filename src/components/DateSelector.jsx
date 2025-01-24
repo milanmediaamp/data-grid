@@ -8,7 +8,6 @@ import { useState } from "react";
 const dateRangeOptions = [
   { label: "Last 7 Days", days: 7 },
   { label: "Last 30 Days", days: 30 },
-  { label: "Last 90 Days", days: 90 },
   { label: "Last Quarter", days: 90 },
   { label: "Last 180 Days", days: 180 },
   { label: "Last Year", days: 365 },
@@ -38,14 +37,14 @@ const DateSelector = ({onDateRangeChange}) => {//eslint-disable-line
     <div className="k-card k-rounded-md" style={{ width: "300px" }}>
       <div style={{ padding: "20px" }}>
         <h2 className="k-card-title">Date Range</h2>
-        {value.start && ("Showing Data from:-")}
+        {value.start && "Showing Data from:-"}
         <Button
           onClick={() => setIsExpanded(!isExpanded)}
           look="outline"
           style={{ width: "100%", marginTop: "12px" }}
         >
           {value.start
-            ? String(value.start.toLocaleDateString())
+            ? String(value.start.toLocaleDateString("en-GB"))
             : "Select Date Range"}
         </Button>
         {isExpanded && (
@@ -69,7 +68,7 @@ const DateSelector = ({onDateRangeChange}) => {//eslint-disable-line
                 <DateRangePicker
                   value={value}
                   onChange={(e) => setValue(e.value)}
-                  format="MM/dd/yyyy"
+                  format="dd/MM/yyyy"
                   style={{ width: "100%" }}
                   show={true}
                 />
